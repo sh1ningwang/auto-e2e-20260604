@@ -1,0 +1,90 @@
+name: "Bug"
+description: "Behavior diverges from intent/spec; /auto should fix it."
+title: "fix: <concise summary>"
+# Default labels applied at filing time. See .github/auto/labels.json.
+# Bugs default to priority P1; promote to status:ready + auto:eligible when specced.
+labels: ["type:bug", "status:triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill every required field. The acceptance criteria are the contract
+        /auto verifies, and they MUST include a regression test that fails
+        before the fix and passes after.
+  - type: textarea
+    id: context
+    attributes:
+      label: "Context / Summary"
+      description: "What is broken and where. Component/file if known."
+      placeholder: "The seed scanner crashes on repos with no package.json ..."
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: "Steps to Reproduce"
+      description: "Exact steps, plus expected vs actual behavior."
+      value: |
+        1.
+        2.
+
+        **Expected:**
+        **Actual:**
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "Acceptance Criteria"
+      description: "What 'fixed' means, as verifiable checkboxes. Must include a regression test."
+      value: |
+        - [ ] Root cause identified
+        - [ ] Regression test added that fails before / passes after
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: "Constraints / Non-goals"
+      description: "Hard limits, explicit out-of-scope items, perf/security/compat requirements."
+    validations:
+      required: false
+  - type: textarea
+    id: definition-of-done
+    attributes:
+      label: "Definition of Done"
+      value: |
+        - [ ] Acceptance criteria met
+        - [ ] Regression test green; full suite green
+        - [ ] Docs updated if behavior/API changed
+        - [ ] gitleaks clean; conventional, atomic, buildable-per-commit
+        - [ ] No `Co-Authored-By` lines in any commit
+        - [ ] PR targets `develop-auto`; CI 100% green
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "Priority"
+      description: "P0 highest. Bugs default to P1."
+      options:
+        - "P0"
+        - "P1"
+        - "P2"
+        - "P3"
+      default: 1
+    validations:
+      required: true
+  - type: dropdown
+    id: size
+    attributes:
+      label: "Size"
+      description: "Informational scope hint (S/M/L/XL); the same consensus protocol runs for every size. Leave blank if unsure (treated as L)."
+      options:
+        - "S"
+        - "M"
+        - "L"
+        - "XL"
+    validations:
+      required: true

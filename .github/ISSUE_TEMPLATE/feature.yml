@@ -1,0 +1,81 @@
+name: "Feature"
+description: "A new user-facing capability for /auto to implement."
+title: "feat: <concise summary>"
+# Default labels applied at filing time. The canonical taxonomy lives in
+# .github/auto/labels.json (single source of truth, mirrors lib/constants.sh).
+# Newly filed work starts at status:triage; a human (or --seed) promotes it to
+# status:ready + auto:eligible once it is fully specced.
+labels: ["type:feature", "status:triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill every required field. /auto reads this body as **structured state**:
+        the acceptance criteria are the contract, and the Definition of Done gates
+        the merge. Under-specced issues stay in `status:triage` and are not picked
+        up autonomously until a human promotes them.
+  - type: textarea
+    id: context
+    attributes:
+      label: "Context / Problem"
+      description: "Why this matters: the user need or current gap. One or two paragraphs."
+      placeholder: "Today users cannot ...; this leads to ..."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "Acceptance Criteria"
+      description: "Checkbox list. Each item independently verifiable. /auto treats these as the contract."
+      value: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: "Constraints / Non-goals"
+      description: "Hard limits, explicit out-of-scope items, perf/security/compat requirements."
+      placeholder: "- Out of scope: ...\n- Must not change the public API of ..."
+    validations:
+      required: false
+  - type: textarea
+    id: definition-of-done
+    attributes:
+      label: "Definition of Done"
+      description: "The merge gate. Edit if this change needs more; do not weaken the baseline."
+      value: |
+        - [ ] Acceptance criteria met
+        - [ ] Tests added/updated; full suite green
+        - [ ] Docs updated if behavior/API changed
+        - [ ] gitleaks clean; conventional, atomic, buildable-per-commit
+        - [ ] No `Co-Authored-By` lines in any commit
+        - [ ] PR targets `develop-auto`; CI 100% green
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "Priority"
+      description: "P0 highest. Default P2."
+      options:
+        - "P0"
+        - "P1"
+        - "P2"
+        - "P3"
+      default: 2
+    validations:
+      required: true
+  - type: dropdown
+    id: size
+    attributes:
+      label: "Size"
+      description: "Informational scope hint (S/M/L/XL); the same consensus protocol runs for every size. Leave blank if unsure (treated as L)."
+      options:
+        - "S"
+        - "M"
+        - "L"
+        - "XL"
+    validations:
+      required: true

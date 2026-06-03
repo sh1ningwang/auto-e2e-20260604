@@ -1,0 +1,84 @@
+name: "Chore / Spike"
+description: "Maintenance (chore) or a time-boxed investigation (spike)."
+title: "chore: <concise summary>"
+# Default labels applied at filing time. See .github/auto/labels.json.
+# Defaults to type:chore. If you pick Kind = spike below, relabel the issue
+# type:spike -> type:chore after filing (forms cannot apply a conditional label).
+labels: ["type:chore", "status:triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for maintenance work (deps, config, internal cleanup) or a
+        time-boxed spike. A spike's deliverable is **findings**, not shipped
+        behavior — post them as a comment on the issue.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: "Kind"
+      description: "Spike => after filing, swap the label type:chore -> type:spike."
+      options:
+        - "chore"
+        - "spike"
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: "Context / Goal"
+      description: "What needs doing and why. For a spike, the question to answer."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "Acceptance Criteria / Spike Questions"
+      description: "Chore: verifiable outcomes. Spike: the questions to answer + the time box."
+      value: |
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: "Constraints / Non-goals"
+      description: "Hard limits, explicit out-of-scope items, perf/security/compat requirements."
+    validations:
+      required: false
+  - type: textarea
+    id: definition-of-done
+    attributes:
+      label: "Definition of Done"
+      value: |
+        - [ ] Outcome achieved / questions answered (spike: findings posted as a comment)
+        - [ ] No behavior change unless explicitly stated (chore)
+        - [ ] gitleaks clean; conventional, atomic, buildable-per-commit
+        - [ ] No `Co-Authored-By` lines in any commit
+        - [ ] PR targets `develop-auto`; CI 100% green (if code changed)
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "Priority"
+      description: "P0 highest. Default P2."
+      options:
+        - "P0"
+        - "P1"
+        - "P2"
+        - "P3"
+      default: 2
+    validations:
+      required: true
+  - type: dropdown
+    id: size
+    attributes:
+      label: "Size"
+      description: "Informational scope hint (S/M/L/XL); the same consensus protocol runs for every size. Leave blank if unsure (treated as L)."
+      options:
+        - "S"
+        - "M"
+        - "L"
+        - "XL"
+    validations:
+      required: true

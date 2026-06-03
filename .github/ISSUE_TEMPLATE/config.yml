@@ -1,0 +1,8 @@
+# Force structured issues only: every /auto-pickable issue must go through one of
+# the Issue Forms so the body is machine-parseable (acceptance criteria, size,
+# priority). Blank issues are disabled.
+blank_issues_enabled: false
+contact_links:
+  - name: "/auto — kill-switch & operations"
+    url: "https://github.com/sh1ningwang/auto/blob/develop/.github/auto/README.md"
+    about: "How to stop /auto, the label state machine, the seed pass, and bootstrap."
