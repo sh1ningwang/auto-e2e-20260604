@@ -2,3 +2,5 @@
 Disposable E2E substrate for /auto plugin (session 20260604). Safe to delete.
 
 > Autonomous repository-evolution substrate — E2E fixture.
+
+# fi02 scratch
